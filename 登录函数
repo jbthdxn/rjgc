@@ -1,0 +1,17 @@
+BEGIN
+    #Routine body goes here...
+    DECLARE uid int DEFAULT 0;
+    DECLARE uname varchar(64) DEFAULT '';
+    DECLARE upwd varchar(128) DEFAULT '';
+    DECLARE result varchar(128) DEFAULT 'success';
+    select id,name,pwd,age,sex into uid,uname,upwd from student where uid=_id;
+    if uid=0 THEN
+        set result='用户不存在';
+    else
+        if upwd!=_pwd THEN
+        set result='密码错误';
+        end if;
+    end if;
+    select id,name,age,sex from student where id=_id
+END
+参数为In _id int(32),In _pwd varchar(128)
